@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<script type="text/javascript">
+		
+	</script>
+</head>
+<body>
+	<button id="btnAjax">Ajax</button>
+	
+	<p id="ajaxTexto">
+		
+	</p>
+
+
+	<script type="text/javascript">
+		btn = document.getElementById("btnAjax");
+		btn.onclick = ajaxReadme;
+
+
+		function ajaxReadme(){
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (xhttp.readyState == 4 && xhttp.status == 200) {
+					var texto = document.getElementById("ajaxTexto")
+					texto.innerHTML = xhttp.responseText;
+				}
+			};
+
+			xhttp.open("GET", "readme.txt", true);
+			xhttp.send();
+		}
+
+
+	</script>
+</body>
+</html>

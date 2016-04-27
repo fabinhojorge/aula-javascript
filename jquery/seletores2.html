@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	
+	<style type="text/css">
+		.conteudo{
+			width: 400px;
+			margin-right: auto;
+			margin-left: auto;
+		}
+
+		.item{
+			background-color: #ccc;
+		}
+
+		
+	</style>
+</head>
+<body>
+
+	<div class="conteudo">
+		<h1 id="titulo" class="indentidade">jQuery</h1>
+		
+		<ul>
+			<li class="active">item 1</li>
+			<li>item 2</li>
+			<li>item 3</li>
+		</ul>
+
+		<input id="texto" type="text"></input>
+		
+	</div>
+
+	<script type="text/javascript" src="jquery-2.2.3.min.js"></script>
+	<script type="text/javascript">
+		
+		$(function(){
+			
+			//$("#texto").remove();			// remove o DOM
+			$("#texto").addClass("item");	// adiciona a classe
+			//$("#texto").removeClass("item");// remove a classe
+			$("#texto").attr("width", 200);	// atributo width do HTML
+			$("#texto").css("color", "red");// propriedade do css
+
+		});		
+
+	</script>
+</body>
+</html>

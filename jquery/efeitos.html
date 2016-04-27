@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	
+	<style type="text/css">
+		.conteudo{
+			width: 400px;
+			margin-right: auto;
+			margin-left: auto;
+		}
+
+		
+	</style>
+	</head>
+<body>
+
+	<div class="conteudo">
+		<p id="nome" class="indentidade">André Paulo</p>
+		
+		<p id="telefone" class="indentidade numero"> 9999-4444</p>
+		
+		<input id="idade" type="text" placeholder="Idade" class="numero"></input>
+		
+		<button id="btn">Click Here</button>
+		
+	</div>
+
+	<script type="text/javascript" src="jquery-2.2.3.min.js"></script>
+	<script type="text/javascript">
+		
+		$(function(){
+			
+			$("#btn").on("click", function(){
+				
+				$("#nome").hide();
+
+				//$("#nome").animate({opacity: 0.2}, 2000);
+
+				/*$("_seletor_").efeito();
+				$("_seletor_").efeito(tempo);
+				$("_seletor_").efeito(tempo, callback);
+
+				$("_seletor_").efeito();
+
+	
+				$("_seletor_").animate(Obj, tempo, callback);
+				$("_seletor_").animate({
+					opacity: 0.25,
+					left: "+=50",
+					height: "toggle"
+					}, 5000, function() {
+						//callback
+				});*/
+
+			});
+
+
+
+		});
+
+	</script>
+</body>
+</html>

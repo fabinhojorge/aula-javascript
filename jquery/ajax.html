@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	
+	<style type="text/css">
+		
+		
+	</style>
+	</head>
+<body>
+
+	<div class="conteudo">
+		<button id="btn">Carregar JSON</button>
+		<ul id="listaCores">
+			
+		</ul>
+	</div>
+	
+	<script type="text/javascript" src="jquery-2.2.3.min.js"></script>
+	<script type="text/javascript">
+		
+		$(function(){
+			$("#btn").on("click", function(){
+				
+				$.ajax({
+				    url : 'color.json',
+				    type: 'GET',
+				    dataType : 'json',
+				    success : function (res) {
+				    	var lu = $("#listaCores");
+				        
+				        for(var i=0; i < res.colorsArray.length; i++){
+				        	var html = "<li>"+res.colorsArray[i].colorName+"</li>";
+				        	$(html).css("background-color", res.colorsArray[i].hexValue).appendTo(lu);
+				        }
+				        
+				    }
+				});
+
+			});
+
+		});
+
+
+		/*
+		$.ajax({
+		    url : 'http://url.com',
+		    type: 'GET',
+		    dataType : 'json',
+		    data:{id:1, nome: "Rafael"},
+		    success : function (res) {
+		    	//callback
+		    	console.debug(res);
+		    },
+		    error: function(){},
+		    complete: function(){}
+		});
+		*/
+	</script>
+</body>
+</html>

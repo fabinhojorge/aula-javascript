@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<script type="text/javascript">
+		
+	</script>
+</head>
+<body>
+	<button id="btnAjax">Ajax</button>
+	
+	<p id="ajaxTexto">
+		
+	</p>
+
+
+	<script type="text/javascript">
+		btn = document.getElementById("btnAjax");
+		btn.onclick = ajaxJson;
+
+		function addTextoObj(obj){
+			var texto = document.getElementById("ajaxTexto")
+			texto.innerHTML = obj.id+"<br>";
+			texto.innerHTML += obj.nome+"<br><br>";
+			texto.innerHTML += "ITEM<br>";
+			for(var i=0; i<obj.item.length; i++){
+				texto.innerHTML += "- "+obj.item[i]+"<br>";	
+			}
+		}
+
+		function ajaxJson(){
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (xhttp.readyState == 4 && xhttp.status == 200) {
+					addTextoObj(JSON.parse(xhttp.responseText));
+				}
+			};
+
+			xhttp.open("GET", "./json/pessoa.json", true);
+			xhttp.send();
+		}
+
+
+	</script>
+</body>
+</html>
