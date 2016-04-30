@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<script type="text/javascript">
+		
+	</script>
+</head>
+<body>
+
+	<input type="text" id="cpf1" class="teste" placeholder="CPF1"/>
+
+	<input type="text" id="cpf2" class="teste" placeholder="CPF2"/>
+
+
+	<script type="text/javascript" src="jquery-2.2.3.min.js"></script>
+
+	<script type="text/javascript">
+
+
+		(function($){
+			$.fn.cpfValidator = function(){
+				
+				var text = this.val();
+				text = text.replace(/\D/g,"");
+				this.val(text);
+				console.debug(text);
+				if(text.length != 11){
+					this.css("color", "red");
+				}else{
+					this.css("color", "#7cdd22");
+				}
+
+				return this;
+			};
+		})(jQuery);
+
+		$(".teste").on("keyup", function(){
+			$(this).cpfValidator();
+		});
+		
+
+	</script>
+</body>
+</html>
