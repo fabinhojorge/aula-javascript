@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+<meta charset="utf-8">
+<title>TO DO list</title>
+
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+    
+</head>
+ 
+<body>
+    
+    <div id="content">
+        <div class='text-center'>
+            <h1>TO DO List</h1>
+            <input id="entrada" type="text" name=""/>
+            <button id="btnAdd">ADD</button>
+            <button id="btnJSON">JSON</button>
+            <button id="btnREMOVER">REMOVER</button>
+        </div>
+        
+        <div>
+            <ul id="todolist"></ul>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="./js/jquery-2.2.3.min.js"></script>
+    
+    <script>
+        
+    $(function(){
+        var entrada = $('#entrada');
+        var btnADD = $('#btnAdd');
+        var btnJSON = $('#btnJSON');
+        var btnREMOVER = $('#btnREMOVER');
+        var todo = $('#todolist');
+        
+        function addNewItem(texto, check){
+            
+            if(texto==""){
+                return false;
+            }
+            
+            //var span = document.createElement('span');
+            //span.textContent = texto;
+            var span = $("<span>"+texto+"</span>");
+            
+            //var checkbox = document.createElement('input');
+            //checkbox.type = "checkbox";
+            //checkbox.onclick = updateItemStatus;
+            var checkbox = $("<input type='checkbox' ></input>");
+            //checkbox.onclick = updateItemStatus;
+            checkbox.on("click", updateItemStatus);
+            
+            if(check){
+                checkbox.attr('checked', 'checked');
+                span.css('textDecoration', 'line-through');
+            }
+            
+            //var item = document.createElement('li');
+            //item.appendChild(checkbox);
+            //item.appendChild(span);
+            var item = $("<li></li>");
+            item.append(checkbox).append(span);
+            //todo.appendChild(item);
+            item.appendTo(todo);
+            
+            //entrada.value = "";
+            entrada.val("");
+        }
+        
+        function updateItemStatus(){
+            //var span = this.parentNode.childNodes[1];
+            var span = $(this).parent().find("span").first();
+            
+            if($(this).is(':checked')){
+                span.css('textDecoration','line-through');
+            }else{
+                span.css('textDecoration','');
+            }
+        }
+        
+        //btnADD.addEventListener('click', function(){
+        //    addNewItem(entrada.value, false);
+        //});
+        btnADD.on("click", function(){
+            addNewItem(entrada.val(), false);
+        });
+        
+        //btnJSON.onclick = carregarJSON;
+        btnJSON.on("click", carregarJSON);
+
+        //entrada.addEventListener('keydown', function(event){
+        //    if(event.which == 13){
+        //        addNewItem(entrada.value, false);
+        //    }
+        //});
+
+        entrada.on("keydown", function(event){
+            if(event.which == 13){
+               addNewItem(entrada.val(), false); 
+            }
+        });
+
+        /*
+        function carregarJSON(){
+            var versao_arquivo;
+            var items;
+            var url_file = './tarefas.json';
+            try{
+                var http_request = new XMLHttpRequest();
+            }catch(e){
+                console.debug(e);
+                return false;
+            }
+            
+            http_request.onreadystatechange = function(){
+            
+                if (http_request.readyState == 4 && http_request.status == 200){
+                  
+                    var jsonObj = JSON.parse(http_request.responseText);
+                    
+                    console.debug(jsonObj.items.length);
+                    
+                    for(var i=0; i<jsonObj.items.length; i++){
+                        
+                        addNewItem(jsonObj.items[i].tarefa, jsonObj.items[i].checked);
+                    }
+               }
+            };
+            
+            http_request.open("GET", url_file, true);
+            http_request.send();
+            
+        }
+        */
+
+        function carregarJSON(){
+            var versao_arquivo;
+            var items;
+            var url_file = './json/tarefas.json';
+            
+            $.ajax({
+                url: url_file,
+                datatype: "json",
+                type: "GET",
+                success: function(res){
+                    $.each(res.items, function(i, v){
+                        addNewItem(v.tarefa, v.checked);
+                    });
+                },
+                error: function(res){
+                    console.error(res);
+                },
+                complete: function(){
+                    console.log("Finalizou Ajax");
+                }
+            });
+        }
+        
+        //Novas funções
+
+        //remover check list: $('input[type=checkbox]:checked').parent().remove()
+        // hide: $('input[type=checkbox]:checked').parent().each(function(){$(this).hide("slow");})
+        // remover com efeito: $('input[type=checkbox]:checked').parent().each(function(){$(this).hide("slow", function(){$(this).remove();});})
+        
+        btnREMOVER.on("click", function(){
+            //$('input[type=checkbox]:checked').parent().remove();
+            //$('input[type=checkbox]:checked').parent().each(function(){$(this).hide("slow");});
+            $('input[type=checkbox]:checked').parent().each(function(){$(this).hide(1000, function(){$(this).remove();});});
+        });
+        
+    });
+        
+    </script>
+
+</body>
+</html>

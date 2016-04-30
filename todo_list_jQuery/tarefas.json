@@ -1,0 +1,9 @@
+{
+    "id_arquivo": 1,
+    "items":[
+            {"tarefa":"Lavar a roupa", "checked": true},
+            {"tarefa":"Ir no mercado", "checked": false},
+            {"tarefa":"Agendar medico", "checked": false},
+            {"tarefa":"Estudar", "checked": true}
+        ]
+}

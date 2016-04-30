@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+<meta charset="utf-8">
+<title>TO DO list</title>
+    <style type="text/css">
+    
+    ul{
+        list-style-type: none;
+    }
+    
+    li{
+        margin-bottom: 10px;
+        padding: 3px;
+        border: 2px #ccc solid;
+        border-radius: 4px;
+    }
+    li:hover{
+        border: 2px #444 solid;
+    }
+    
+    li span{
+        font-size: 1.6em;
+        font-weight: bold;
+        padding-left: 20px;
+    }
+    
+    #content{
+        width: 500px;
+    }
+    
+    .text-center{
+        text-align: center;
+    }
+    
+    </style>
+</head>
+
+<body>
+    
+    <div id="content">
+        <div class='text-center'>
+            <h1>TO DO List</h1>
+            <input id="entrada" type="text" name=""/>
+            <button id="btnAdd">ADD</button>
+            <button id="btnJSON">JSON</button>
+            
+        </div>
+        
+        <div>
+            <ul id="todolist">
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        
+    function init(){
+    
+        var entrada = document.getElementById('entrada');
+        var btn = document.getElementById('btnAdd');
+        var btnJSON = document.getElementById('btnJSON');
+        var todo = document.getElementById('todolist');
+        
+        function addNewItem(texto, check){
+            
+            if(texto==""){
+                return false;
+            }
+            
+            var span = document.createElement('span');
+            span.textContent = texto;
+            
+            var checkbox = document.createElement('input');
+            checkbox.type = "checkbox";
+            checkbox.onclick = updateItemStatus;
+            
+            if(check){
+                checkbox.checked = 'checked';
+                span.style.textDecoration = 'line-through';
+            }
+            
+            var item = document.createElement('li');
+            item.appendChild(checkbox);
+            item.appendChild(span);
+            
+            todo.appendChild(item);
+            
+            entrada.value = "";
+        }
+        
+        function updateItemStatus(){
+            var span = this.parentNode.childNodes[1];
+            if(this.checked){
+                span.style.textDecoration = 'line-through';
+            }else{
+                span.style.textDecoration = '';
+            }
+        }
+        
+        btn.addEventListener('click', function(){
+            addNewItem(entrada.value, false);
+        });
+        
+        btnJSON.onclick = carregarJSON;
+        
+        entrada.addEventListener('keydown', function(event){
+            if(event.which == 13){
+                addNewItem(entrada.value, false);
+            }
+        });
+        
+        function carregarJSON(){
+            var versao_arquivo;
+            var items;
+            var url_file = './tarefas.json';
+            try{
+                var http_request = new XMLHttpRequest();
+            }catch(e){
+                console.debug(e);
+                return false;
+            }
+            
+            http_request.onreadystatechange = function(){
+            
+                if (http_request.readyState == 4 && http_request.status == 200){
+                  
+                    var jsonObj = JSON.parse(http_request.responseText);
+                    
+                    console.debug(jsonObj.items.length);
+                    
+                    for(var i=0; i<jsonObj.items.length; i++){
+                        
+                        addNewItem(jsonObj.items[i].tarefa, jsonObj.items[i].checked);
+                    }
+               }
+            };
+            
+            http_request.open("GET", url_file, true);
+            http_request.send();
+            
+        }
+        
+        
+    };
+
+    window.onload = init;
+    </script>
+
+</body>
+</html>
