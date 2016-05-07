@@ -20,13 +20,19 @@ Os códigos do jQuery estão na pasta **jquery** junto com uma versão da biblio
 
 - FLANAGAN, David. “***JavaScript: O Guia Definitivo***”. Editora Bookman, 6ª edição, 2012
 
-- [Introdução JS] (http://pt.slideshare.net/fernandosimeone/javascript-30043260)
+- Rodrigo Branas. “***AngularJS Essentials Starting***”. Editora PACKT PUBLISHING. Agosto de 2014.
 
-- [Peculiariedadesdo JS] (http://leobetosouza.com.br/Palestra-Peculiaridades-do-JavaScript/#/)
+- Daniel Schmitz e Douglas Lira. “***AngularJS na prática***”. Editora Leanpub. Julho de 2015
+
+- [Introdução JS](http://pt.slideshare.net/fernandosimeone/javascript-30043260)
+
+- [Peculiariedadesdo JS](http://leobetosouza.com.br/Palestra-Peculiaridades-do-JavaScript/#/)
 
 
 
 ##Lista de Links Úteis
+
+- - ###links do dia 30/04/2016
 
 - [Front-End](http://willianjusten.com.br/como-se-tornar-um-desenvolvedor-front-end/)
 
@@ -57,3 +63,29 @@ Os códigos do jQuery estão na pasta **jquery** junto com uma versão da biblio
 - [Design Patterns](http://udgwebdev.com/design-patterns-para-javascript-parte-1)
 
 - [EventosDOM](http://www.w3schools.com/jsref/dom_obj_event.asp)
+
+- ###links do dia 07/05/2016
+
+- [HTML5, validação de formulários](http://blog.popupdesign.com.br/validando-formularios-like-a-boss-com-html5/)
+
+- [HTML5, validação de formulários 2](http://wbruno.com.br/html/validando-formularios-apenas-com-html5/)
+
+- [HTML5, validação de formulários 3](http://html5doctor.com/html5-forms-input-types/)
+
+- [HTML5 LocalStorage](https://zenorocha.com/html5-local-storage)
+
+- [Livro AngularJS na prática](http://docplayer.com.br/278424-Pt_br-angularjs-na-pratica.html)
+
+- [SPA e Modelos de dev](http://imasters.com.br/desenvolvimento/single-page-applications-e-outras-maravilhas-da-web-moderna/?trace=1519021197)
+
+- [Top Frameworks e quando usar](http://www.sitepoint.com/top-javascript-frameworks-libraries-tools-use/)
+
+- [Comparação de Angular, Ember e Backbone](https://www.airpair.com/js/javascript-framework-comparison)
+
+- [Framework Kendo-ui](http://www.devmedia.com.br/apresentando-o-framework-kendo-ui/27285)
+
+- [WebComponents e Frameworks](https://smthngsmwhr.wordpress.com/2015/04/13/web-components-and-friends-react-angular-polymer/)
+
+- [Prós e Contras do Meteor](http://www.slant.co/topics/3918/viewpoints/1/~full-stack-isomorphic-javascript-frameworks~meteor)
+
+- [Discussão sobre o estado da arte do JS 28/02/2016](https://medium.com/javascript-and-opinions/state-of-the-art-javascript-in-2016-ab67fc68eb0b)
