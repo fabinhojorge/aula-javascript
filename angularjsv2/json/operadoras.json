@@ -1,0 +1,9 @@
+{
+	"operadoras":[
+		{"nome":"Vivo", "codigo":"15", "tipo":"movel"},
+		{"nome":"Tim", "codigo":"41", "tipo":"movel"},
+		{"nome":"Oi", "codigo":"14", "tipo":"movel"},
+		{"nome":"Embratel", "codigo":"21", "tipo":"fixo"},
+		{"nome":"GVT", "codigo":"43", "tipo":"fixo"}
+	]
+}

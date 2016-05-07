@@ -1,0 +1,45 @@
+<script type="text/javascript" src="./lib/angular.min.js"></script>
+<script type="text/javascript">
+	
+	var appCep = angular.module("BuscaCep", []);
+	
+	appCep.value("config", {
+		"cepUrl":"https://viacep.com.br/ws/",
+		"tipoRetorno":"/json"
+	});
+
+	appCep.controller("BuscaCepCtrl", function($scope, $http, config){
+
+		$scope.buscaCep = function(cep){
+			var url = config.cepUrl +cep + config.tipoRetorno;
+			$http.get(url).success(function(data){
+				console.log(data);
+				$scope.showCep = data;
+				delete $scope.cep;
+			});
+		};
+	});
+
+</script>
+
+<div ng-app="BuscaCep">
+	<div ng-controller="BuscaCepCtrl">
+		<small>Tente 17501181</small>
+		<br>
+		<form>
+			<input type="text" ng-model="cep" maxlength="8" placeholder="Informe o CEP"/>
+			<button ng-click="buscaCep(cep)">Buscar CEP</button>
+		</form>
+		
+		<hr/>
+
+		<!--<div ng-bind="showCep | json">-->
+		<div>
+			<p ng-repeat="(key, value) in showCep">
+				<strong>{{key}} - </strong>
+				<span>{{value}}</span>
+			</p>
+		</div>
+	</div>
+	
+</div>

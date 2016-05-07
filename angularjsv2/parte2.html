@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="listaTelefonica">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Lista Telefonica</title>
+
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/app.css">
+	
+	<script type="text/javascript" src="./lib/angular.min.js"></script>
+	<script type="text/javascript" src="./lib/angular-messages.min.js"></script>
+	<script type="text/javascript" src="./lib/angular-locale_pt-br.js"></script>
+	<script type="text/javascript" src="./js/app.js"></script>
+	<script type="text/javascript" src="./js/controllers/listaTelefonicaCtrl.js"></script>
+	<script type="text/javascript" src="./js/services/contatosJSONService.js"></script>
+	<script type="text/javascript" src="./js/filters/capitelizeStringFilter.js"></script>
+	<script type="text/javascript" src="./js/directives/imprimeDataDirective.js"></script>
+	
+	
+</head>
+<body ng-controller="listaTelefonicaCtrl">
+
+	<div class="content jumbotron">
+		<h3 ng-bind="nomeApp"></h3>
+
+
+		<div imprime-data date="dataHoje"></div>
+		
+		
+		<input class="form-control" ng-model="criterioBusca" type="text" placeholder="Buscar"/>
+
+		<table class="table table-bordered">
+			<tr>
+				<th></th>
+				<th><a href="" ng-click="ordenaPor('nome')">Nome</a></th>
+				<th><a href="" ng-click="ordenaPor('telefone')">Telefone</a></th>
+				<th><a href="" ng-click="ordenaPor('telefone')">Operadora</a></th>
+			</tr>
+			<tr ng-class="{selecionado: contato.selecionado}" ng-repeat="contato in contatos | filter: criterioBusca | orderBy:criterioOrdenacao:sentidoOrdenacao">
+				<td> <input type="checkbox" ng-model="contato.selecionado"/></td>
+				<td> {{contato.nome | uppercase}}</td>
+				<td> {{contato.telefone}}</td>
+				<td> {{contato.operadora.nome | lowercase}}</td>
+			</tr>
+		</table>
+
+		<form action="#" name="contatoForm">
+			<input autofocus autocomplete="off" name="nome" class="form-control" type="text" ng-model="contato.nome" placeholder="Nome" ng-required="true" ng-minlength="10" ng-pattern="/[A-Z][a-zA-Z0-9\s]{0,}/">
+			<div ng-messages="contatoForm.nome.$error" ng-if="contatoForm.nome.$dirty">
+				<div class="erroMessage" ng-message="required"><span class="label label-danger">Preencha o Nome</span></div>
+				<div class="erroMessage" ng-message="pattern"><span class="label label-danger">Primeira letra precisa ser maiúscula</span></div>
+				<div class="erroMessage" ng-message="minlength"><span class="label label-danger">Nome precisa ter 10 caracteres</span></div>
+			</div>
+
+			<input name="telefone" class="form-control" type="text" ng-model="contato.telefone" placeholder="Telefone" ng-required="true" ng-pattern="/^\d{4,5}-\d{4}$/">
+			<div class="erroMessage" ng-show="contatoForm.telefone.$error.required && contatoForm.telefone.$dirty"><span class="label label-danger">Preencha o Telefone</span></div>
+			<div class="erroMessage" ng-show="contatoForm.telefone.$error.pattern && contatoForm.telefone.$dirty"><span class="label label-danger">Precisa ser DDDDD-DDDD</span></div>
+			
+
+			<select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome group by operadora.tipo for operadora in operadoras">
+				<option value="">Selecione a operadora</option>
+			</select>
+		</form>
+		<button class="btn btn-primary btn-block" ng-click="addContato(contato)" ng-disabled="contatoForm.$invalid">Adicionar Contato</button>
+
+		<button class="btn btn-danger btn-block" ng-click="apagarContatos(contatos)" ng-disabled="!isContatosSelecionado(contatos)">Apagar</button>
+
+	</div>
+	
+	<div ng-include="footerFile"></div>
+
+	
+
+</body>
+</html>

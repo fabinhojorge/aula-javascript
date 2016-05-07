@@ -1,0 +1,8 @@
+{
+	"contatos":[
+		{"nome": "Jefferson Luiz", "telefone": "9999-3333","operadora":{"nome":"Vivo", "codigo":"15", "tipo":"movel"}},
+		{"nome": "Paulo Augusto", "telefone": "8888-2222" ,"operadora":{"nome":"Tim", "codigo":"41", "tipo":"movel"}},
+		{"nome": "Larissa Silva", "telefone": "7777-1111" ,"operadora":{"nome":"Oi", "codigo":"14", "tipo":"movel"}},
+		{"nome": "Fabio Oliveira", "telefone": "6666-5555","operadora":{"nome":"Embratel", "codigo":"21", "tipo":"fixo"}}
+	]
+}

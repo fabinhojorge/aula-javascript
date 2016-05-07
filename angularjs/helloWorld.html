@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="meuApp">
+<head>
+<meta charset="utf-8">
+	<title>Angular App</title>
+	<style type="text/css">
+	
+	</style>
+	
+	<!--<script type="text/javascript" src="lib/angular.min.js"></script>-->
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+	<script type="text/javascript">
+		angular.module("meuApp", []);
+		angular.module("meuApp").controller("meuAppCtrl", function($scope){
+			
+			$scope.meuAppName = "Nome do meu APP";
+			
+		});
+	</script>
+</head>
+
+<body ng-controller="meuAppCtrl">
+	<div>
+		<h3>{{meuAppName}}</h3>
+	</div>
+</body>
+</html>
