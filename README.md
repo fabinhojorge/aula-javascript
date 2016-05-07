@@ -6,12 +6,17 @@ Material do curso de pós graduação em Desenvolvimento Web e Aplicativos Móve
 
 Os slides das aulas estão na pasta Slides. Alguns slides terão um pequeno texto ao lado das figuras de códigos indicando o nome do arquivo que aquele slide se refere.
 
-A pasta **json** contém alguns exemplos de arquivos json.
+A pasta **json/** contém alguns exemplos de arquivos json.
 
-Os códigos de Javascript estão na pasta **javascript**. 
+Os códigos de Javascript estão na pasta **javascript/**. 
 
-Os códigos do jQuery estão na pasta **jquery** junto com uma versão da biblioteca.
+Os códigos do jQuery estão na pasta **jquery/** junto com uma versão da biblioteca.
 
+Os códigos do HTML5 estão na pasta **html5/**
+
+Os códigos do ReactJS estão na pasta **React/**
+
+Os códigos do AngularJS estão nas pastas **angularjs/** e **angularjsv2/**. A v2 são os códigos depois do refatoramento do projeto. Também são códigos que possuem interação por Ajax
 
 
 ##Referências
@@ -32,7 +37,7 @@ Os códigos do jQuery estão na pasta **jquery** junto com uma versão da biblio
 
 ##Lista de Links Úteis
 
-- - ###links do dia 30/04/2016
+- ###links do dia 30/04/2016
 
 - [Front-End](http://willianjusten.com.br/como-se-tornar-um-desenvolvedor-front-end/)
 
