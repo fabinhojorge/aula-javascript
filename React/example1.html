@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<meta charset="UTF-8">
+<head>
+	<title>React Hello World</title>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.2/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.2/react-dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    
+    
+  </head>
+  <body>
+
+    <div id="content"></div>
+
+    <script type="text/babel">
+	    var CommentBox = React.createClass({
+			render: function() {
+				return (
+					<div className="commentBox">
+						Hello, world! I am a CommentBox.
+					</div>
+				);
+			}
+		});
+
+		ReactDOM.render(
+		  <CommentBox />,
+		  document.getElementById('content')
+		);
+    </script>
+
+  </body>
+</html>

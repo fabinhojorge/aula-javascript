@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Local Storage</title>
+
+	<style type="text/css">
+	
+
+	</style>
+</head>
+<body>
+
+	<h3>Teste de Local Storage. Os dados são atualizados a cada 2 segundos</h3>
+	
+	<ul id="listaValores">
+	</ul>
+	
+	<script type="text/javascript">
+		window.onload = function(){
+			var listaValores = document.getElementById("listaValores");
+			var nomeBase = "base";
+
+			//Executa 1x
+			carregaValoresLista();
+			//executa carregaValoresLista a cada 2 segundos
+			setInterval(carregaValoresLista, 2000);
+
+			//retorna os dados de localStorage
+			function getDadosLocal(nomeStorage){
+				nomeStorage = nomeStorage || nomeBase || "noName";
+				var dados = localStorage.getItem(nomeStorage);
+				dados = JSON.parse(dados);
+				
+				if(!dados){
+					dados = {items: []};
+				}
+				
+				return dados;
+			}
+
+			function carregaValoresLista(){
+
+				var dados = getDadosLocal(nomeBase);
+
+				if(dados && dados.items){
+					console.log("[Valores carregados]");
+					//Destroi a subarvore da lista
+					listaValores.innerHTML = "";	
+					for(var i=0; i<dados.items.length; i++){
+						//Percorre os dados criando os elementos LI
+						//e adicionando na lista
+						var li = document.createElement("li");
+						li.textContent = dados.items[i];
+						listaValores.appendChild(li);
+					}
+				}
+			}
+		}
+	</script>
+
+</body>
+</html>

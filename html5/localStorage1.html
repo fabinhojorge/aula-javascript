@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Local Storage</title>
+
+	<style type="text/css">
+	
+
+	</style>
+</head>
+<body>
+
+	<h3>Teste de Local Storage.</h3>
+	<form action="#">
+		<input id="entrada" type="text" placeholder="Insira um valor aqui" />
+		<button id="btn">Inserir valor</button>
+	</form>
+	
+	
+	<script type="text/javascript">
+		window.onload = function(){
+			var btn = document.getElementById("btn");
+			var entrada = document.getElementById("entrada");
+			var nomeBase = "base";
+
+			btn.addEventListener("click", addValor);
+
+			//retorna os dados de localStorage
+			function getDadosLocal(nomeStorage){
+				nomeStorage = nomeStorage || nomeBase || "noName";
+				var dados = localStorage.getItem(nomeStorage);
+				dados = JSON.parse(dados);
+				
+				if(!dados || !dados.items){
+					dados = {items: []};
+				}
+				
+				return dados;
+			}
+
+			//set dados em localStorage com o nome nomeBase
+			function setDadosLocal(nomeStorage, dados){
+				nomeStorage = nomeStorage || nomeBase || "noName";
+				localStorage.setItem(nomeStorage, JSON.stringify(dados));
+			}
+
+			// retorna os valores, faz adiciona no vetor e salva novamente
+			function addValor(){
+				if(entrada.value!=null && entrada.value !=""){
+					var dados = getDadosLocal(nomeBase);
+					dados.items.push(entrada.value);
+					mostraValores(dados);
+					setDadosLocal(nomeBase,dados);
+					entrada.value="";
+				}
+			}
+
+			// percorre os dados e mostra no console
+			function mostraValores(dados){
+				if(dados && dados.items){
+					for(var i=0; i<dados.items.length; i++){
+						console.debug(dados.items[i]);
+					}
+				}
+			}
+		}
+	</script>
+
+</body>
+</html>

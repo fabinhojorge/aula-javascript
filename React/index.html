@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<meta charset="UTF-8">
+<head>
+	<title>React Hello World</title>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.2/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.2/react-dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <style type="text/css">
+    	.commentBox{
+    		width: 500px;
+    		background-color: #f0f0f0;
+    		margin-right: auto;
+    		margin-left: auto;
+    		margin-top: 30px;
+    		padding: 10px;
+    		border-radius: 5px;
+    		border: 2px solid #ccc;
+    	}
+    	.commentBox h1{
+    		text-align: center;
+    	}
+
+    	.commentList{
+
+    	}
+    	.commentList h4{
+
+    	}
+
+    	.comment{
+    		background-color: #aaffff;
+    		padding: 0px 5px;
+    		margin-bottom: 20px;
+    		border: solid 1px black;
+    		border-radius: 5px;
+    	}
+
+    </style>
+  </head>
+  <body>
+
+    <div id="content"></div>
+
+    <script type="text/babel">
+	    var CommentBox = React.createClass({
+	    	getInitialState: function() {
+		    	return {data: []};
+		  	},
+			render: function() {
+				return (
+					<div className="commentBox">
+						<h1>Comentários</h1>
+				        <CommentList data={this.props.data}/>
+				        <CommentForm />
+					</div>
+				);
+			}
+		});
+
+		var CommentList = React.createClass({
+			render: function() {
+
+				var commentNodes = this.props.data.map(function(comment) {
+					return (
+							<Comment autor={comment.autor} key={comment.id}>
+								{comment.text}
+							</Comment>
+						);
+				});
+				return (
+					<div className="commentList">
+						<h4>Comentários Recentes</h4>
+						{commentNodes}
+					</div>
+				);
+			}
+		});
+
+		var Comment = React.createClass({
+			render: function() {
+				return (
+					<div className="comment">
+						<h2 className="commentAuthor">
+							{this.props.autor}
+						</h2>
+						{this.props.children.toString()}
+					</div>
+				);
+			}
+		});
+
+		var CommentForm = React.createClass({
+			render: function() {
+				return (
+					<div className="commentForm">
+						Comment FORM
+					</div>
+				);
+			}
+		});
+
+		var data = [
+			{id: 1, autor: "Pedro Augusto", text: "*Primeiro comentario*"},
+			{id: 2, autor: "Emanuele da Silva", text: "Um comentário de **teste**"}
+		];
+
+		ReactDOM.render(
+		  <CommentBox data={data}/>,
+		  document.getElementById('content')
+		);
+    </script>
+
+  </body>
+</html>
+
